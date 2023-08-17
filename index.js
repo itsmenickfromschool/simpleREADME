@@ -33,14 +33,22 @@ message: 'Please input your tests:',
 
 // TODO: Create a function to write README file
 function writeToFile(fileName, data) {
-    fs.writeFile
-}
+    fileName = `${fileName.toLowerCase().split(' ').join('')}.md`;
+    fs.writeFile(`${fileName}`, generateMarkdown(data, (err) =>
+    err ? console.log(err) : console.log('Success!'))
+    
+)}
 
 // TODO: Create a function to initialize app
 function init() {
     inquirer
         .prompt(questions)
-        .then(writeToFile())
+        .then((data) => {
+            const {readmeTitle} = data
+            console.log(`title is ${readmeTitle}`);
+            writeToFile(readmeTitle, generateMarkdown(data));
+
+        })
 }
 
 // Function call to initialize app
