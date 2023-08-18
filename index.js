@@ -34,10 +34,10 @@ message: 'Please input your tests:',
 // TODO: Create a function to write README file
 function writeToFile(fileName, data) {
     fileName = `${fileName.toLowerCase().split(' ').join('')}.md`;
-    fs.writeFile(`${fileName}`, generateMarkdown(data, (err) =>
+    fs.writeFile(`${fileName}`, generateMarkdown(data), (err) =>
     err ? console.log(err) : console.log('Success!'))
     
-)}
+}
 
 // TODO: Create a function to initialize app
 function init() {
@@ -46,7 +46,7 @@ function init() {
         .then((data) => {
             const {readmeTitle} = data
             console.log(`title is ${readmeTitle}`);
-            writeToFile(readmeTitle, generateMarkdown(data));
+            writeToFile(readmeTitle, data);
 
         })
 }
